@@ -12,11 +12,10 @@ class Window(tkinter.Frame):
         print("The user clicked 'cancel'")
         self.master.destroy()
 
+    
+
     def click_enter(self, p1lat, p1long, p2lat, p2long):
-        p1lat = p1lat.get()
-        p1long = p1long.get()
-        p2lat = p2lat.get()
-        p2long = p2long.get()
+
         print(p1lat, p1long, p2lat, p2long)
         self.master.destroy()
 
@@ -31,13 +30,6 @@ class Window(tkinter.Frame):
         self.pack()
 
     def init_window(self):
-
-         # The names of the four variables to be input, allows floats to deal with lot and lang
-
-        p1lat = tkinter.DoubleVar()
-        p1long = tkinter.DoubleVar()
-        p2lat = tkinter.DoubleVar()
-        p2long = tkinter.DoubleVar()
 
         # The GUI can be dragged larger or smaller horizontally or vertically, True for resizable, False for fixed
         self.master.resizable(True, True)
@@ -79,14 +71,16 @@ class Window(tkinter.Frame):
         label2 = tkinter.Label(input_frame, text="Longitude of point 1", font=font)
         label3 = tkinter.Label(input_frame, text="Latitude of point 2", font=font)
         label4 = tkinter.Label(input_frame, text="Longitude of point 2", font=font)
-        # the x coordinate of variable 1
-        entry1 = tkinter.Entry(input_frame, textvariable=p1lat)
-        # the y coordinate of variable 1
-        entry2 = tkinter.Entry(input_frame, textvariable=p1long)
-        # the x coordinate of variable 2
-        entry3 = tkinter.Entry(input_frame, textvariable=p2lat)
-        # the y coordinate of variable 2
-        entry4 = tkinter.Entry(input_frame, textvariable=p2long)
+
+        # The names of the four variables to be input, allows floats to deal with lat and long
+        # the latitude of point 1
+        p1lat = tkinter.Spinbox(input_frame, from_=-90.0, to=90.0)
+        # the longitude of point 1
+        p1long = tkinter.Spinbox(input_frame, from_=-180.0, to=180.0)
+        # the latitude of point 2
+        p2lat = tkinter.Spinbox(input_frame, from_=-90.0, to=90.0)
+        # the longitude of point 2
+        p2long = tkinter.Spinbox(input_frame, from_=-180.0, to=180.0)
 
         # positioning of title text
         title.grid(row=0, padx=10, pady=10)
@@ -96,13 +90,13 @@ class Window(tkinter.Frame):
 
         # positioning of input labels and boxes
         label1.grid(row=0, column=0, padx=(20, 0), pady=10)
-        entry1.grid(row=0, column=1, padx=(0, 20), pady=10)
+        p1lat.grid(row=0, column=1, padx=(0, 20), pady=10)
         label2.grid(row=1, column=0, padx=(20, 0), pady=10)
-        entry2.grid(row=1, column=1, padx=(0, 20), pady=10)
+        p1long.grid(row=1, column=1, padx=(0, 20), pady=10)
         label3.grid(row=2, column=0, padx=(20, 0), pady=10)
-        entry3.grid(row=2, column=1, padx=(0, 20), pady=10)
+        p2lat.grid(row=2, column=1, padx=(0, 20), pady=10)
         label4.grid(row=3, column=0, padx=(20, 0), pady=10)
-        entry4.grid(row=3, column=1, padx=(0, 20), pady=10)
+        p2long.grid(row=3, column=1, padx=(0, 20), pady=10)
 
         button_frame = tkinter.Frame(self)
         button_frame.grid(row = 5)
